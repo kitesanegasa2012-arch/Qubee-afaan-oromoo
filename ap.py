@@ -1,23 +1,50 @@
-import os
-import streamlit as st
+from flask import Flask, render_template
 
-st.set_page_config(page_title="Qubee Afaan Oromoo", page_icon="🔤")
+app = Flask(__name__)
 
-st.title("🔤 Qubee Afaan Oromoo Dubbisu")
-st.write("Qubee tokko tokko xuqii sagalee isaa dhaggeeffadhu!")
+# Data Qubee Afaan Oromoo guutuu
+QUBEE_DATA = [
+    # Dubbachiiftuu (Vowels)
+    {"qubee": "A a", "fakkeenya": "Adaadaa", "hiika": "Aunt", "gosa": "Dubbachiiftuu"},
+    {"qubee": "E e", "fakkeenya": "Eeboo", "hiika": "Spear", "gosa": "Dubbachiiftuu"},
+    {"qubee": "I i", "fakkeenya": "Ija", "hiika": "Eye", "gosa": "Dubbachiiftuu"},
+    {"qubee": "O o", "fakkeenya": "Obboleessa", "hiika": "Brother", "gosa": "Dubbachiiftuu"},
+    {"qubee": "U u", "fakkeenya": "Ummata", "hiika": "People", "gosa": "Dubbachiiftuu"},
 
-qubeewwan = [
-    "A", "B", "C", "CH", "D", "DH", "E", "F", "G", "H", "I", "J", "K", "L", "M", 
-    "N", "NY", "O", "P", "PH", "Q", "R", "S", "SH", "T", "U", "V", "W", "X", "Y", "Z"
+    # Dubbifamaa (Consonants)
+    {"qubee": "B b", "fakkeenya": "Bara", "hiika": "Year", "gosa": "Dubbifamaa"},
+    {"qubee": "C c", "fakkeenya": "Caama", "hiika": "Sunshine", "gosa": "Dubbifamaa"},
+    {"qubee": "D d", "fakkeenya": "Dachee", "hiika": "Earth", "gosa": "Dubbifamaa"},
+    {"qubee": "F f", "fakkeenya": "Farda", "hiika": "Horse", "gosa": "Dubbifamaa"},
+    {"qubee": "G g", "fakkeenya": "Gaala", "hiika": "Camel", "gosa": "Dubbifamaa"},
+    {"qubee": "H h", "fakkeenya": "Harma", "hiika": "Breast", "gosa": "Dubbifamaa"},
+    {"qubee": "J j", "fakkeenya": "Jirbii", "hiika": "Cotton", "gosa": "Dubbifamaa"},
+    {"qubee": "K k", "fakkeenya": "Kallattii", "hiika": "Direction", "gosa": "Dubbifamaa"},
+    {"qubee": "L l", "fakkeenya": "Laga", "hiika": "River", "gosa": "Dubbifamaa"},
+    {"qubee": "M m", "fakkeenya": "Mana", "hiika": "House", "gosa": "Dubbifamaa"},
+    {"qubee": "N n", "fakkeenya": "Namticha", "hiika": "Man", "gosa": "Dubbifamaa"},
+    {"qubee": "P p", "fakkeenya": "Phaappasiyaa", "hiika": "Papaya", "gosa": "Dubbifamaa"},
+    {"qubee": "Q q", "fakkeenya": "Qeerransa", "hiika": "Tiger/Leopard", "gosa": "Dubbifamaa"},
+    {"qubee": "R r", "fakkeenya": "Risaa", "hiika": "Eagle", "gosa": "Dubbifamaa"},
+    {"qubee": "S s", "fakkeenya": "Saree", "hiika": "Dog", "gosa": "Dubbifamaa"},
+    {"qubee": "T t", "fakkeenya": "Tulluu", "hiika": "Mountain", "gosa": "Dubbifamaa"},
+    {"qubee": "V v", "fakkeenya": "Vaayirasii", "hiika": "Virus", "gosa": "Dubbifamaa"},
+    {"qubee": "W w", "fakkeenya": "Waaqa", "hiika": "God/Sky", "gosa": "Dubbifamaa"},
+    {"qubee": "Y y", "fakkeenya": "Yeroo", "hiika": "Time", "gosa": "Dubbifamaa"},
+    {"qubee": "Z z", "fakkeenya": "Zeebiraa", "hiika": "Zebra", "gosa": "Dubbifamaa"},
+
+    # Qubee Dachaa (Double Consonants)
+    {"qubee": "CH ch", "fakkeenya": "Chala", "hiika": "Name", "gosa": "Qubee Dachaa"},
+    {"qubee": "DH dh", "fakkeenya": "Dhagaa", "hiika": "Stone", "gosa": "Qubee Dachaa"},
+    {"qubee": "NY ny", "fakkeenya": "Nyaata", "hiika": "Food", "gosa": "Qubee Dachaa"},
+    {"qubee": "PH ph", "fakkeenya": "Phaaphii", "hiika": "Bishop", "gosa": "Qubee Dachaa"},
+    {"qubee": "SH sh", "fakkeenya": "Shan", "hiika": "Five", "gosa": "Qubee Dachaa"},
+    {"qubee": "TS ts", "fakkeenya": "Tseessuu", "hiika": "Transition", "gosa": "Qubee Dachaa"}
 ]
 
-cols = st.columns(4)
-for i, q in enumerate(qubeewwan):
-    with cols[i % 4]:
-        if st.button(q, use_container_width=True):
-            # Faayiloonni kallattiidhaan ap.py cinaa waan jiraniif maqaa qofaan waamama
-            audio_path = f"{q.lower()}.mp3"
-            if os.path.exists(audio_path):
-                st.audio(audio_path)
-            else:
-                st.warning(f"Sagaleen qubee '{q}' hin argamne!")
+@app.route('/')
+def home():
+    return render_template('index.html', qubee_list=QUBEE_DATA)
+
+if __name__ == '__main__':
+    app.run(debug=True)
