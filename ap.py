@@ -1,4 +1,4 @@
- import os
+import os
 import streamlit as st
 
 st.set_page_config(page_title="Qubee Afaan Oromoo", page_icon="🔤", layout="centered")
@@ -57,7 +57,7 @@ st.markdown("""
 
 st.title("🔤 Qubee Afaan Oromoo Dubbisu")
 st.write("Qubee tokko tokko xuqii sagalee isaa dhaggeeffadhu!")
-st.write("") # Space uumuu
+st.write("") 
 
 qubeewwan = [
     "A", "B", "C", "CH", "D", "DH", "E", "F", "G", "H", "I", "J", "K", "L", "M", 
@@ -67,10 +67,9 @@ qubeewwan = [
 cols = st.columns(4)
 for i, q in enumerate(qubeewwan):
     with cols[i % 4]:
-        # Key add gochuun button-ni tokkoon tokkoon isaanii adda akka ta'an taasisa
         if st.button(q, key=f"btn_{q}", use_container_width=True):
             audio_path = f"{q.lower()}.mp3"
             if os.path.exists(audio_path):
                 st.audio(audio_path)
             else:
-                st.warning(f"Sagaleen qubee '{q}' hin argamne!")
+                st.warning(f"Sagaleen qubee '{q}' hin argamne!") 
