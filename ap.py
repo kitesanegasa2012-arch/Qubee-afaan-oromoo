@@ -1,3 +1,4 @@
+import os
 import streamlit as st
 
 st.set_page_config(page_title="Qubee Afaan Oromoo", page_icon="🔤")
@@ -14,4 +15,8 @@ cols = st.columns(4)
 for i, q in enumerate(qubeewwan):
     with cols[i % 4]:
         if st.button(q, use_container_width=True):
-            st.audio(f"audio/{q.lower()}.mp3")
+            audio_path = f"audio/{q.lower()}.mp3"
+            if os.path.exists(audio_path):
+                st.audio(audio_path)
+            else:
+                st.warning(f"Sagaleen qubee '{q}' hin argamne!")
