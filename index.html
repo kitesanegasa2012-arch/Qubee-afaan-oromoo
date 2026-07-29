@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="om">
+<head>
+    <meta charset="UTF-8">
+    <title>Qubee Afaan Oromoo Baradhu</title>
+    <style>
+        body { font-family: Arial, sans-serif; text-align: center; background-color: #f4f4f9; padding: 20px; }
+        h2 { color: #333; }
+        .grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 15px; max-width: 500px; margin: auto; }
+        .btn { background-color: #2E7D32; color: white; border: none; padding: 20px; font-size: 24px; font-weight: bold; border-radius: 10px; cursor: pointer; transition: 0.2s; }
+        .btn:hover { background-color: #1B5E20; }
+    </style>
+</head>
+<body>
+
+    <h2>Qubee Afaan Oromoo Baradhu</h2>
+    <p>Qubee tokko tokko xuqii sagalee dhaggeeffadhu!</p>
+    <div class="grid" id="alphabetGrid"></div>
+
+    <script>
+        const qubeewwan = [
+            {q: "A", s: "audio/a.mp3"}, {q: "B", s: "audio/b.mp3"}, {q: "C", s: "audio/c.mp3"},
+            {q: "CH", s: "audio/ch.mp3"}, {q: "D", s: "audio/d.mp3"}, {q: "DH", s: "audio/dh.mp3"},
+            {q: "E", s: "audio/e.mp3"}, {q: "F", s: "audio/f.mp3"}, {q: "G", s: "audio/g.mp3"},
+            {q: "H", s: "audio/h.mp3"}, {q: "I", s: "audio/i.mp3"}, {q: "J", s: "audio/j.mp3"},
+            {q: "K", s: "audio/k.mp3"}, {q: "L", s: "audio/l.mp3"}, {q: "M", s: "audio/m.mp3"},
+            {q: "N", s: "audio/n.mp3"}, {q: "NY", s: "audio/ny.mp3"}, {q: "O", s: "audio/o.mp3"},
+            {q: "P", s: "audio/p.mp3"}, {q: "PH", s: "audio/ph.mp3"}, {q: "Q", s: "audio/q.mp3"},
+            {q: "R", s: "audio/r.mp3"}, {q: "S", s: "audio/s.mp3"}, {q: "SH", s: "audio/sh.mp3"},
+            {q: "T", s: "audio/t.mp3"}, {q: "U", s: "audio/u.mp3"}, {q: "V", s: "audio/v.mp3"},
+            {q: "W", s: "audio/w.mp3"}, {q: "X", s: "audio/x.mp3"}, {q: "Y", s: "audio/y.mp3"},
+            {q: "Z", s: "audio/z.mp3"}
+        ];
+
+        const grid = document.getElementById("alphabetGrid");
+
+        qubeewwan.forEach(item => {
+            const button = document.createElement("button");
+            button.className = "btn";
+            button.innerText = item.q;
+            button.onclick = () => {
+                let audio = new Audio(item.s);
+                audio.play();
+            };
+            grid.appendChild(button);
+        });
+    </script>
+
+</body>
+</html>
