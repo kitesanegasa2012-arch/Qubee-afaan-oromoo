@@ -15,7 +15,8 @@ cols = st.columns(4)
 for i, q in enumerate(qubeewwan):
     with cols[i % 4]:
         if st.button(q, use_container_width=True):
-            audio_path = f"audio/{q.lower()}.mp3"
+            # Faayiloonni kallattiidhaan ap.py cinaa waan jiraniif maqaa qofaan waamama
+            audio_path = f"{q.lower()}.mp3"
             if os.path.exists(audio_path):
                 st.audio(audio_path)
             else:
