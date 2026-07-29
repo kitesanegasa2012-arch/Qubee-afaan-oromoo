@@ -3,216 +3,125 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Appilikeeshinii Qubee Afaan Oromoo</title>
-    <!-- Google Fonts & FontAwesome Icons -->
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    
+    <title>Qubee Afaan Oromoo Baradhu</title>
     <style>
-        :root {
-            --primary-color: #2e7d32;
-            --secondary-color: #fbc02d;
-            --accent-color: #e53935;
-            --bg-color: #f4f6f8;
-            --card-bg: #ffffff;
-            --text-color: #333333;
-        }
-
-        * {
-            box-sizing: border-box;
+        body { 
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; 
+            text-align: center; 
+            background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%); 
             margin: 0;
-            padding: 0;
-            font-family: 'Poppins', sans-serif;
-        }
-
-        body {
-            background-color: var(--bg-color);
-            color: var(--text-color);
+            padding: 20px; 
+            min-height: 100vh;
             display: flex;
             flex-direction: column;
-            min-height: 100vh;
-        }
-
-        /* Header Styling */
-        header {
-            background: linear-gradient(135deg, var(--primary-color), #1b5e20);
-            color: white;
-            padding: 2rem 1rem;
-            text-align: center;
-            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.15);
-        }
-
-        header h1 {
-            font-size: 2.2rem;
-            font-weight: 700;
-            margin-bottom: 0.5rem;
-        }
-
-        header p {
-            font-size: 1.1rem;
-            opacity: 0.9;
-        }
-
-        /* Navigation / Categories */
-        .category-container {
-            display: flex;
+            align-items: center;
             justify-content: center;
-            gap: 1rem;
-            margin: 2rem 1rem 1rem 1rem;
-            flex-wrap: wrap;
         }
 
-        .category-btn {
-            background-color: var(--card-bg);
-            border: 2px solid var(--primary-color);
-            color: var(--primary-color);
-            padding: 0.6rem 1.5rem;
-            border-radius: 25px;
-            font-size: 1rem;
-            font-weight: 600;
-            cursor: pointer;
-            transition: all 0.3s ease;
-        }
-
-        .category-btn:hover, .category-btn.active {
-            background-color: var(--primary-color);
-            color: white;
-            transform: translateY(-2px);
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-        }
-
-        /* Grid Section */
         .container {
-            max-width: 1100px;
-            margin: 0 auto;
-            padding: 1rem;
-            flex: 1;
+            background: #ffffff;
+            padding: 30px;
+            border-radius: 20px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15);
+            max-width: 550px;
+            width: 100%;
+            border: 4px solid #ffffff;
         }
 
-        .qubee-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(140px, 1fr));
-            gap: 1.5rem;
-            margin-top: 1rem;
+        h2 { 
+            color: #1a237e; 
+            margin-bottom: 5px;
+            font-size: 26px;
         }
 
-        /* Qubee Card Styling */
-        .card {
-            background-color: var(--card-bg);
-            border-radius: 15px;
-            padding: 1.5rem 1rem;
-            text-align: center;
-            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
-            transition: transform 0.3s ease, box-shadow 0.3s ease;
-            cursor: pointer;
-            position: relative;
-            border-bottom: 4px solid var(--primary-color);
+        p { 
+            color: #555555; 
+            margin-bottom: 25px; 
+            font-size: 15px;
         }
 
-        .card:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
+        .grid { 
+            display: grid; 
+            grid-template-columns: repeat(4, 1fr); 
+            gap: 15px; 
         }
 
-        .card .letter {
-            font-size: 2.8rem;
-            font-weight: 700;
-            color: var(--primary-color);
-            margin-bottom: 0.5rem;
+        .btn { 
+            color: white; 
+            border: 2px solid rgba(255, 255, 255, 0.8); 
+            padding: 18px 0; 
+            font-size: 22px; 
+            font-weight: bold; 
+            border-radius: 14px; 
+            cursor: pointer; 
+            transition: all 0.2s ease-in-out; 
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.12);
         }
 
-        .card .example {
-            font-size: 1rem;
-            font-weight: 600;
-            color: #555;
+        .btn:hover { 
+            transform: translateY(-5px); 
+            box-shadow: 0 8px 18px rgba(0, 0, 0, 0.25); 
+            filter: brightness(1.15);
         }
 
-        .card .meaning {
-            font-size: 0.85rem;
-            color: #777;
-            margin-top: 0.2rem;
+        .btn:active {
+            transform: translateY(1px);
         }
 
-        .card .sound-icon {
-            margin-top: 0.8rem;
-            color: var(--secondary-color);
-            font-size: 1.2rem;
-        }
-
-        /* Footer */
-        footer {
-            background-color: #1b5e20;
-            color: white;
-            text-align: center;
-            padding: 1rem;
-            margin-top: 2rem;
-            font-size: 0.9rem;
-        }
-
-        /* Responsive Design */
-        @media (max-width: 600px) {
-            header h1 { font-size: 1.6rem; }
-            .qubee-grid { grid-template-columns: repeat(auto-fill, minmax(100px, 1fr)); gap: 1rem; }
-            .card .letter { font-size: 2rem; }
+        @media (max-width: 480px) {
+            .grid { grid-template-columns: repeat(3, 1fr); }
+            .container { padding: 15px; }
         }
     </style>
 </head>
 <body>
 
-    <header>
-        <h1><i class="fa-solid fa-book-open-reader"></i> Qubee Afaan Oromoo</h1>
-        <p>Barnoota Qubee, Sagaleewwan fi Fakkeenya Isaanii</p>
-    </header>
-
-    <div class="category-container">
-        <button class="category-btn active" onclick="filterCategory('all')">Hunda</button>
-        <button class="category-btn" onclick="filterCategory('Dubbachiiftuu')">Dubbachiiftuu</button>
-        <button class="category-btn" onclick="filterCategory('Dubbifamaa')">Dubbifamaa</button>
-        <button class="category-btn" onclick="filterCategory('Qubee Dachaa')">Qubee Dachaa</button>
-    </div>
-
     <div class="container">
-        <div class="qubee-grid" id="qubeeGrid">
-            {% for item in qubee_list %}
-            <div class="card" data-category="{{ item.gosa }}" onclick="playAudio('{{ item.qubee }}', '{{ item.fakkeenya }}')">
-                <div class="letter">{{ item.qubee }}</div>
-                <div class="example">{{ item.fakkeenya }}</div>
-                <div class="meaning">({{ item.hiika }})</div>
-                <div class="sound-icon"><i class="fa-solid fa-volume-high"></i></div>
-            </div>
-            {% endfor %}
-        </div>
+        <h2>Qubee Afaan Oromoo Baradhu</h2>
+        <p>Qubee tokko tokko xuqii sagalee dhaggeeffadhu!</p>
+        <div class="grid" id="alphabetGrid"></div>
     </div>
-
-    <footer>
-        <p>&copy; 2026 Appilikeeshinii Qubee Afaan Oromoo | Barnoota fi Saayinsii</p>
-    </footer>
 
     <script>
-        // Filter by Category
-        function filterCategory(category) {
-            const buttons = document.querySelectorAll('.category-btn');
-            buttons.forEach(btn => btn.classList.remove('active'));
-            event.target.classList.add('active');
+        const qubeewwan = [
+            {q: "A", s: "audio/a.mp3"}, {q: "B", s: "audio/b.mp3"}, {q: "C", s: "audio/c.mp3"},
+            {q: "CH", s: "audio/ch.mp3"}, {q: "D", s: "audio/d.mp3"}, {q: "DH", s: "audio/dh.mp3"},
+            {q: "E", s: "audio/e.mp3"}, {q: "F", s: "audio/f.mp3"}, {q: "G", s: "audio/g.mp3"},
+            {q: "H", s: "audio/h.mp3"}, {q: "I", s: "audio/i.mp3"}, {q: "J", s: "audio/j.mp3"},
+            {q: "K", s: "audio/k.mp3"}, {q: "L", s: "audio/l.mp3"}, {q: "M", s: "audio/m.mp3"},
+            {q: "N", s: "audio/n.mp3"}, {q: "NY", s: "audio/ny.mp3"}, {q: "O", s: "audio/o.mp3"},
+            {q: "P", s: "audio/p.mp3"}, {q: "PH", s: "audio/ph.mp3"}, {q: "Q", s: "audio/q.mp3"},
+            {q: "R", s: "audio/r.mp3"}, {q: "S", s: "audio/s.mp3"}, {q: "SH", s: "audio/sh.mp3"},
+            {q: "T", s: "audio/t.mp3"}, {q: "U", s: "audio/u.mp3"}, {q: "V", s: "audio/v.mp3"},
+            {q: "W", s: "audio/w.mp3"}, {q: "X", s: "audio/x.mp3"}, {q: "Y", s: "audio/y.mp3"},
+            {q: "Z", s: "audio/z.mp3"}
+        ];
 
-            const cards = document.querySelectorAll('.card');
-            cards.forEach(card => {
-                if (category === 'all' || card.getAttribute('data-category') === category) {
-                    card.style.display = 'block';
-                } else {
-                    card.style.display = 'none';
-                }
-            });
-        }
+        // Tarree halluwwan miidhagoo (Color Palette)
+        const colors = [
+            "#D32F2F", "#C2185B", "#7B1FA2", "#512DA8", 
+            "#303F9F", "#1976D2", "#0288D1", "#0097A7", 
+            "#00796B", "#388E3C", "#689F38", "#AFB42B", 
+            "#FBC02D", "#FFA000", "#F57C00", "#E64A19"
+        ];
 
-        // Text-to-Speech function for pronunciation
-        function playAudio(letter, word) {
-            const textToSpeak = `${letter} ... ${word}`;
-            const utterance = new SpeechSynthesisUtterance(textToSpeak);
-            utterance.lang = 'om-ET'; // Afaan Oromoo Accent (or fallback to default)
-            utterance.rate = 0.8; // Slower rate for learning
-            window.speechSynthesis.speak(utterance);
-        }
+        const grid = document.getElementById("alphabetGrid");
+
+        qubeewwan.forEach((item, index) => {
+            const button = document.createElement("button");
+            button.className = "btn";
+            button.innerText = item.q;
+            
+            // Button tokkoon tokkoon isaaniif halluu addaa kennuu
+            button.style.backgroundColor = colors[index % colors.length];
+
+            button.onclick = () => {
+                let audio = new Audio(item.s);
+                audio.play();
+            };
+            grid.appendChild(button);
+        });
     </script>
+
 </body>
 </html>
