@@ -1,50 +1,76 @@
-from flask import Flask, render_template
+ import os
+import streamlit as st
 
-app = Flask(__name__)
+st.set_page_config(page_title="Qubee Afaan Oromoo", page_icon="🔤", layout="centered")
 
-# Data Qubee Afaan Oromoo guutuu
-QUBEE_DATA = [
-    # Dubbachiiftuu (Vowels)
-    {"qubee": "A a", "fakkeenya": "Adaadaa", "hiika": "Aunt", "gosa": "Dubbachiiftuu"},
-    {"qubee": "E e", "fakkeenya": "Eeboo", "hiika": "Spear", "gosa": "Dubbachiiftuu"},
-    {"qubee": "I i", "fakkeenya": "Ija", "hiika": "Eye", "gosa": "Dubbachiiftuu"},
-    {"qubee": "O o", "fakkeenya": "Obboleessa", "hiika": "Brother", "gosa": "Dubbachiiftuu"},
-    {"qubee": "U u", "fakkeenya": "Ummata", "hiika": "People", "gosa": "Dubbachiiftuu"},
+# Dizaayinii fi Miidhagina (CSS Styling)
+st.markdown("""
+<style>
+    /* Background gadi fagoo fi miidhagaa */
+    .stApp {
+        background: linear-gradient(135deg, #0b0f19 0%, #1e293b 100%);
+        color: #f8fafc;
+    }
 
-    # Dubbifamaa (Consonants)
-    {"qubee": "B b", "fakkeenya": "Bara", "hiika": "Year", "gosa": "Dubbifamaa"},
-    {"qubee": "C c", "fakkeenya": "Caama", "hiika": "Sunshine", "gosa": "Dubbifamaa"},
-    {"qubee": "D d", "fakkeenya": "Dachee", "hiika": "Earth", "gosa": "Dubbifamaa"},
-    {"qubee": "F f", "fakkeenya": "Farda", "hiika": "Horse", "gosa": "Dubbifamaa"},
-    {"qubee": "G g", "fakkeenya": "Gaala", "hiika": "Camel", "gosa": "Dubbifamaa"},
-    {"qubee": "H h", "fakkeenya": "Harma", "hiika": "Breast", "gosa": "Dubbifamaa"},
-    {"qubee": "J j", "fakkeenya": "Jirbii", "hiika": "Cotton", "gosa": "Dubbifamaa"},
-    {"qubee": "K k", "fakkeenya": "Kallattii", "hiika": "Direction", "gosa": "Dubbifamaa"},
-    {"qubee": "L l", "fakkeenya": "Laga", "hiika": "River", "gosa": "Dubbifamaa"},
-    {"qubee": "M m", "fakkeenya": "Mana", "hiika": "House", "gosa": "Dubbifamaa"},
-    {"qubee": "N n", "fakkeenya": "Namticha", "hiika": "Man", "gosa": "Dubbifamaa"},
-    {"qubee": "P p", "fakkeenya": "Phaappasiyaa", "hiika": "Papaya", "gosa": "Dubbifamaa"},
-    {"qubee": "Q q", "fakkeenya": "Qeerransa", "hiika": "Tiger/Leopard", "gosa": "Dubbifamaa"},
-    {"qubee": "R r", "fakkeenya": "Risaa", "hiika": "Eagle", "gosa": "Dubbifamaa"},
-    {"qubee": "S s", "fakkeenya": "Saree", "hiika": "Dog", "gosa": "Dubbifamaa"},
-    {"qubee": "T t", "fakkeenya": "Tulluu", "hiika": "Mountain", "gosa": "Dubbifamaa"},
-    {"qubee": "V v", "fakkeenya": "Vaayirasii", "hiika": "Virus", "gosa": "Dubbifamaa"},
-    {"qubee": "W w", "fakkeenya": "Waaqa", "hiika": "God/Sky", "gosa": "Dubbifamaa"},
-    {"qubee": "Y y", "fakkeenya": "Yeroo", "hiika": "Time", "gosa": "Dubbifamaa"},
-    {"qubee": "Z z", "fakkeenya": "Zeebiraa", "hiika": "Zebra", "gosa": "Dubbifamaa"},
+    /* Mata-Duree (Title) */
+    h1 {
+        color: #fef08a !important;
+        text-align: center;
+        font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        text-shadow: 0 2px 10px rgba(212,175,55,0.3);
+    }
 
-    # Qubee Dachaa (Double Consonants)
-    {"qubee": "CH ch", "fakkeenya": "Chala", "hiika": "Name", "gosa": "Qubee Dachaa"},
-    {"qubee": "DH dh", "fakkeenya": "Dhagaa", "hiika": "Stone", "gosa": "Qubee Dachaa"},
-    {"qubee": "NY ny", "fakkeenya": "Nyaata", "hiika": "Food", "gosa": "Qubee Dachaa"},
-    {"qubee": "PH ph", "fakkeenya": "Phaaphii", "hiika": "Bishop", "gosa": "Qubee Dachaa"},
-    {"qubee": "SH sh", "fakkeenya": "Shan", "hiika": "Five", "gosa": "Qubee Dachaa"},
-    {"qubee": "TS ts", "fakkeenya": "Tseessuu", "hiika": "Transition", "gosa": "Qubee Dachaa"}
+    p {
+        text-align: center;
+        color: #cbd5e1;
+        font-size: 16px;
+    }
+
+    /* Button-wwan qubeewwanii (Border, Gradient fi Hover effect) */
+    div.stButton > button {
+        background: linear-gradient(135deg, #1e3a8a, #2563eb);
+        color: white;
+        border-radius: 14px;
+        border: 2px solid rgba(212, 175, 55, 0.4);
+        font-size: 22px;
+        font-weight: bold;
+        padding: 16px 0px;
+        width: 100%;
+        box-shadow: 0 6px 15px rgba(0, 0, 0, 0.3);
+        transition: all 0.3s ease-in-out;
+    }
+
+    /* Yeroo Mouse irra buusu (Hover) */
+    div.stButton > button:hover {
+        transform: translateY(-4px);
+        background: linear-gradient(135deg, #2563eb, #3b82f6);
+        border-color: #fef08a;
+        box-shadow: 0 10px 20px rgba(59, 130, 246, 0.4);
+    }
+
+    /* Yeroo tuqu (Active) */
+    div.stButton > button:active {
+        transform: scale(0.96);
+    }
+</style>
+""", unsafe_allow_html=True)
+
+st.title("🔤 Qubee Afaan Oromoo Dubbisu")
+st.write("Qubee tokko tokko xuqii sagalee isaa dhaggeeffadhu!")
+st.write("") # Space uumuu
+
+qubeewwan = [
+    "A", "B", "C", "CH", "D", "DH", "E", "F", "G", "H", "I", "J", "K", "L", "M", 
+    "N", "NY", "O", "P", "PH", "Q", "R", "S", "SH", "T", "U", "V", "W", "X", "Y", "Z"
 ]
 
-@app.route('/')
-def home():
-    return render_template('index.html', qubee_list=QUBEE_DATA)
-
-if __name__ == '__main__':
-    app.run(debug=True)
+cols = st.columns(4)
+for i, q in enumerate(qubeewwan):
+    with cols[i % 4]:
+        # Key add gochuun button-ni tokkoon tokkoon isaanii adda akka ta'an taasisa
+        if st.button(q, key=f"btn_{q}", use_container_width=True):
+            audio_path = f"{q.lower()}.mp3"
+            if os.path.exists(audio_path):
+                st.audio(audio_path)
+            else:
+                st.warning(f"Sagaleen qubee '{q}' hin argamne!")
